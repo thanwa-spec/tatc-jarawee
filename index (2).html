@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>วิทยาลัยเทคนิคไทย-ออสเตรีย | TATC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0A1F33;
+    --navy-800:#0F2E4C;
+    --navy-700:#173F63;
+    --steel-500:#5A7793;
+    --steel-200:#D8E1E9;
+    --steel-100:#EEF2F6;
+    --orange-500:#F2762E;
+    --orange-600:#D9601C;
+    --ink:#131C26;
+    --white:#FFFFFF;
+    --radius:2px;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--steel-100);
+    color:var(--ink);
+    font-family:'Noto Sans Thai','Kanit',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.display{
+    font-family:'Kanit','Noto Sans Thai',sans-serif;
+    margin:0;
+    letter-spacing:0.2px;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'Kanit',sans-serif;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--orange-600);
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:2px;
+    background:var(--orange-500);
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:'Kanit',sans-serif;font-weight:600;font-size:15px;
+    padding:13px 28px;
+    border-radius:var(--radius);
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn:focus-visible{outline:3px solid var(--orange-500);outline-offset:3px;}
+  .btn-primary{background:var(--orange-500);color:var(--white);}
+  .btn-primary:hover{background:var(--orange-600);transform:translateY(-1px);}
+  .btn-ghost{border-color:rgba(255,255,255,0.55);color:var(--white);}
+  .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,0.08);}
+  .btn-outline-navy{border-color:var(--navy-800);color:var(--navy-800);background:transparent;}
+  .btn-outline-navy:hover{background:var(--navy-800);color:var(--white);}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:var(--navy-900);
+    border-bottom:3px solid var(--orange-500);
+  }
+  .nav-row{
+    display:flex;align-items:center;justify-content:space-between;
+    height:76px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;color:var(--white);}
+  .brand-mark{
+    width:44px;height:44px;flex:none;
+    border:2px solid var(--orange-500);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Kanit',sans-serif;font-weight:800;font-size:15px;color:var(--white);
+    position:relative;
+    background:var(--white);
+    overflow:hidden;
+  }
+  .brand-mark img{width:100%;height:100%;object-fit:contain;}
+  .brand-mark::before,.brand-mark::after{
+    content:"";position:absolute;width:6px;height:6px;border:1.5px solid var(--orange-500);
+  }
+  .brand-mark::before{top:-4px;left:-4px;border-right:none;border-bottom:none;}
+  .brand-mark::after{bottom:-4px;right:-4px;border-left:none;border-top:none;}
+  .brand-text{display:flex;flex-direction:column;line-height:1.25;}
+  .brand-text strong{font-family:'Kanit',sans-serif;font-weight:700;font-size:16px;}
+  .brand-text span{font-size:11px;letter-spacing:1.5px;color:var(--steel-200);text-transform:uppercase;}
+
+  nav.main-menu{display:flex;align-items:center;gap:6px;}
+  nav.main-menu a{
+    color:var(--steel-200);font-family:'Kanit',sans-serif;font-weight:500;font-size:15px;
+    padding:10px 14px;border-bottom:2px solid transparent;
+  }
+  nav.main-menu a:hover{color:var(--white);border-color:var(--orange-500);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .menu-toggle{
+    display:none;background:none;border:2px solid var(--steel-200);color:var(--white);
+    width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;
+  }
+  .menu-toggle span{display:block;width:18px;height:2px;background:var(--white);position:relative;}
+  .menu-toggle span::before,.menu-toggle span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--white);}
+  .menu-toggle span::before{top:-6px;} .menu-toggle span::after{top:6px;}
+
+  /* ===== Hero / Banner ===== */
+  .hero{
+    position:relative;
+    background:linear-gradient(120deg,var(--navy-900) 45%,var(--navy-700) 100%);
+    color:var(--white);
+    overflow:hidden;
+    padding:76px 0 0;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 85%);
+            mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 85%);
+  }
+  .hero-grid{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;
+    align-items:center;
+    padding:64px 0 84px;
+  }
+  .hero h1{
+    font-size:clamp(30px,4.4vw,52px);
+    font-weight:700;line-height:1.15;
+    margin:18px 0 20px;
+  }
+  .hero h1 em{color:var(--orange-500);font-style:normal;}
+  .hero p{color:var(--steel-200);font-size:17px;max-width:52ch;margin-bottom:30px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-stats{display:flex;gap:0;margin-top:46px;border-top:1px solid rgba(255,255,255,0.18);padding-top:22px;}
+  .hero-stats div{padding-right:34px;margin-right:34px;border-right:1px solid rgba(255,255,255,0.18);}
+  .hero-stats div:last-child{border-right:none;}
+  .hero-stats strong{display:block;font-family:'Kanit',sans-serif;font-size:26px;color:var(--orange-500);}
+  .hero-stats span{font-size:12px;color:var(--steel-200);letter-spacing:.5px;}
+
+  .hero-visual{
+    position:relative;
+    border:1px solid rgba(255,255,255,0.25);
+    aspect-ratio:4/3.1;
+    background:var(--navy-800);
+    display:flex;align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero-visual img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0.85;
+    mix-blend-mode:luminosity;
+  }
+  .hero-visual::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,31,51,0.15) 0%, rgba(10,31,51,0.85) 100%);
+  }
+  .hero-visual::before,.hero-visual::after{
+    content:"";position:absolute;width:16px;height:16px;border:2px solid var(--orange-500);
+  }
+  .hero-visual::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+  .hero-visual::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+  .hero-visual-caption{
+    position:relative;margin:18px;padding:14px 16px;
+    background:rgba(10,31,51,0.85);border-left:3px solid var(--orange-500);
+    font-family:'Kanit',sans-serif;font-size:13px;color:var(--steel-200);
+  }
+  .hero-visual-caption strong{display:block;color:var(--white);font-size:15px;margin-bottom:4px;}
+
+  .hazard-divider{height:10px;background:repeating-linear-gradient(-45deg,var(--orange-500) 0 18px, var(--navy-900) 18px 36px);}
+
+  /* ===== Section shell ===== */
+  section{padding:74px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:38px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(24px,3vw,34px);font-weight:700;color:var(--navy-900);margin-top:10px;}
+  .section-head p.lead{color:var(--steel-500);max-width:48ch;margin-top:8px;}
+
+  /* ===== News ===== */
+  .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .news-card{
+    background:var(--white);border:1px solid var(--steel-200);
+    display:flex;flex-direction:column;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .news-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(15,46,76,0.12);}
+  .news-thumb{
+    aspect-ratio:16/10;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,var(--navy-700),var(--navy-900));
+  }
+  .news-thumb img{
+    width:100%;height:100%;object-fit:cover;
+  }
+  .news-thumb span{
+    position:absolute;bottom:10px;left:10px;
+    background:var(--orange-500);color:var(--white);
+    font-family:'Kanit',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;
+    padding:5px 10px;text-transform:uppercase;
+  }
+  .news-body{padding:20px 20px 24px;display:flex;flex-direction:column;gap:10px;flex:1;}
+  .news-date{font-size:12px;color:var(--steel-500);font-family:'Kanit',sans-serif;letter-spacing:.5px;}
+  .news-body h3{font-size:17px;font-weight:600;color:var(--navy-900);line-height:1.4;}
+  .news-body p{font-size:14px;color:var(--steel-500);margin:0;flex:1;}
+  .news-link{font-family:'Kanit',sans-serif;font-size:13px;font-weight:600;color:var(--orange-600);margin-top:4px;}
+  .news-link::after{content:" →";}
+
+  /* ===== Programs ===== */
+  .programs{background:var(--navy-900);color:var(--white);}
+  .programs .eyebrow{color:var(--orange-500);}
+  .programs .section-head h2{color:var(--white);}
+  .programs .section-head p.lead{color:var(--steel-200);}
+  .program-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.14);}
+  .program-card{
+    background:var(--navy-900);padding:28px 20px;grid-column:span 2;
+    display:flex;flex-direction:column;gap:14px;min-height:190px;
+    transition:background .2s ease;
+  }
+  .program-card:hover{background:var(--navy-700);}
+  .program-num{font-family:'Kanit',sans-serif;font-size:12px;color:var(--orange-500);letter-spacing:2px;}
+  .program-card h3{font-size:18px;font-weight:600;}
+  .program-card p{font-size:13px;color:var(--steel-200);margin:0;flex:1;}
+
+  /* ===== CTA band ===== */
+  .cta-band{
+    background:var(--orange-500);color:var(--white);
+    padding:54px 0;
+  }
+  .cta-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .cta-row h2{font-size:clamp(22px,2.6vw,30px);font-weight:700;}
+  .cta-row p{margin:6px 0 0;color:rgba(255,255,255,0.9);}
+  .cta-band .btn-primary{background:var(--navy-900);}
+  .cta-band .btn-primary:hover{background:var(--navy-800);}
+
+  /* ===== Footer ===== */
+  footer{background:var(--navy-900);color:var(--steel-200);padding:64px 0 0;font-size:14px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,0.12);}
+  .footer-grid h4{color:var(--white);font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;}
+  .footer-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .footer-grid a:hover{color:var(--orange-500);}
+  .footer-brand p{color:var(--steel-200);max-width:34ch;margin:14px 0 20px;font-size:13.5px;}
+  .footer-social{display:flex;gap:10px;}
+  .footer-social a{
+    width:36px;height:36px;border:1px solid rgba(255,255,255,0.3);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-family:'Kanit',sans-serif;font-weight:600;
+  }
+  .footer-social a:hover{border-color:var(--orange-500);color:var(--orange-500);}
+  .footer-bottom{
+    display:flex;justify-content:space-between;padding:22px 0;font-size:12.5px;color:var(--steel-500);flex-wrap:wrap;gap:10px;
+  }
+
+  /* ===== Mobile floating apply button ===== */
+  .float-apply{
+    position:fixed;right:18px;bottom:18px;z-index:120;
+    box-shadow:0 10px 24px rgba(217,96,28,0.4);
+    display:none;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;padding-bottom:56px;}
+    .hero-visual{order:-1;aspect-ratio:16/9;}
+    .news-grid{grid-template-columns:repeat(2,1fr);}
+    .program-grid{grid-template-columns:repeat(4,1fr);}
+    .program-card{grid-column:span 2;}
+    .footer-grid{grid-template-columns:1fr 1fr;row-gap:36px;}
+  }
+  @media (max-width:720px){
+    nav.main-menu{
+      position:fixed;top:76px;left:0;right:0;bottom:0;
+      background:var(--navy-900);
+      flex-direction:column;align-items:stretch;
+      padding:10px 24px 30px;
+      transform:translateX(100%);
+      transition:transform .25s ease;
+      gap:0;
+      overflow-y:auto;
+    }
+    nav.main-menu.open{transform:translateX(0);}
+    nav.main-menu a{padding:16px 4px;border-bottom:1px solid rgba(255,255,255,0.1);font-size:16px;}
+    .nav-actions .btn-primary{display:none;}
+    .menu-toggle{display:flex;}
+    .hero-stats{flex-wrap:wrap;row-gap:16px;}
+    .hero-stats div{padding-right:20px;margin-right:20px;}
+    .news-grid{grid-template-columns:1fr;}
+    .program-grid{grid-template-columns:repeat(2,1fr);}
+    .program-card{grid-column:span 1;}
+    .cta-row{flex-direction:column;align-items:flex-start;}
+    .footer-grid{grid-template-columns:1fr;}
+    .float-apply{display:inline-flex;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><img src="https://www.tatc.ac.th/files/display_20100887_25121515155329.gif" alt="ตราวิทยาลัยเทคนิคไทย-ออสเตรีย"></span>
+      <span class="brand-text">
+        <strong>วิทยาลัยเทคนิคไทย-ออสเตรีย</strong>
+        <span>Thai-Austrian Technical College</span>
+      </span>
+    </a>
+
+    <nav class="main-menu" id="mainMenu">
+      <a href="#home">หน้าหลัก</a>
+      <a href="#news">ข่าวประชาสัมพันธ์</a>
+      <a href="#programs">หลักสูตร</a>
+      <a href="#about">เกี่ยวกับวิทยาลัย</a>
+      <a href="#contact">ติดต่อเรา</a>
+      <a href="#apply" style="color:var(--orange-500);">สมัครเรียน</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="#apply" class="btn btn-primary">สมัครเรียน</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">วิทยาลัยเทคนิคไทย-ออสเตรีย · จังหวัดระยอง</p>
+      <h1>ฝึกจริง ทำงานได้จริง <em>สร้างช่างฝีมือ</em> สู่มืออาชีพ</h1>
+      <p>วิทยาลัยสายอาชีพที่เน้นปฏิบัติงานจริงในโรงฝึกงานมาตรฐาน ผลิตช่างเทคนิคที่สถานประกอบการอุตสาหกรรมต้องการ ตั้งแต่ห้องเรียนสู่สายการผลิตจริง</p>
+      <div class="hero-actions">
+        <a href="#apply" class="btn btn-primary">สมัครเรียนวันนี้</a>
+        <a href="#programs" class="btn btn-ghost">ดูหลักสูตรทั้งหมด</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>6</strong><span>สาขาวิชาชีพ</span></div>
+        <div><strong>90%+</strong><span>อัตรามีงานทำ</span></div>
+        <div><strong>40+</strong><span>ปีที่ก่อตั้ง</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://www.tatc.ac.th/files/26060513135435.jpg" alt="ภาพกิจกรรมนักศึกษาวิทยาลัยเทคนิคไทย-ออสเตรีย">
+      <div class="hero-visual-caption">
+        <strong>โรงฝึกงานมาตรฐานอุตสาหกรรม</strong>
+        เรียนกับเครื่องจักรและอุปกรณ์ที่ใช้งานจริงในสถานประกอบการ
+      </div>
+    </div>
+  </div>
+</section>
+<div class="hazard-divider" aria-hidden="true"></div>
+
+<section id="news">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">อัปเดตล่าสุด</p>
+        <h2>ข่าวประชาสัมพันธ์</h2>
+      </div>
+      <a href="#" class="btn btn-outline-navy">ข่าวทั้งหมด</a>
+    </div>
+
+    <div class="news-grid">
+      <article class="news-card">
+        <div class="news-thumb">
+          <img src="https://www.tatc.ac.th/files/bigsize_20100887_26081916161617.jpeg" alt="เยี่ยมชมสถานประกอบการ">
+          <span>รับสมัคร</span>
+        </div>
+        <div class="news-body">
+          <span class="news-date">26 สิงหาคม 2569</span>
+          <h3>เปิดรับสมัครนักเรียน–นักศึกษา ระดับ ปวช. และ ปวส. ประจำปีการศึกษา 2569</h3>
+          <p>สมัครได้ทั้งช่องทางออนไลน์และที่วิทยาลัยโดยตรง มีทุนการศึกษาสำหรับผู้เรียนดีและขาดแคลนทุนทรัพย์</p>
+          <a href="#" class="news-link">อ่านรายละเอียด</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-thumb">
+          <img src="https://www.tatc.ac.th/files/bigsize_20100887_26081916161946.jpeg" alt="อบรมพื้นฐานการควบคุมวาล์ว">
+          <span>อบรม</span>
+        </div>
+        <div class="news-body">
+          <span class="news-date">19 สิงหาคม 2569</span>
+          <h3>อบรมพื้นฐานการควบคุมวาล์ว (Control Valve Basic Training) ร่วมกับสถานประกอบการ</h3>
+          <p>นักศึกษาช่างเทคนิคอุตสาหกรรมได้ฝึกปฏิบัติกับผู้เชี่ยวชาญจากภาคอุตสาหกรรมจริง</p>
+          <a href="#" class="news-link">อ่านรายละเอียด</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-thumb">
+          <img src="https://www.tatc.ac.th/files/bigsize_20100887_2608140993557.jpeg" alt="กิจกรรมวิทยาลัยเทคนิคไทย-ออสเตรีย">
+          <span>ทุนการศึกษา</span>
+        </div>
+        <div class="news-body">
+          <span class="news-date">14 สิงหาคม 2569</span>
+          <h3>มอบทุนการศึกษาจากสถานประกอบการพันธมิตร สนับสนุนนักเรียนต่อเนื่องทุกภาคเรียน</h3>
+          <p>ความร่วมมือกับสถานประกอบการช่วยลดภาระค่าใช้จ่ายผู้ปกครองตลอดหลักสูตร</p>
+          <a href="#" class="news-link">อ่านรายละเอียด</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">สายอาชีพที่ตลาดงานต้องการ</p>
+        <h2>หลักสูตรที่เปิดสอน</h2>
+        <p class="lead">ระดับ ปวช. และ ปวส. เรียนทฤษฎีควบคู่ปฏิบัติจริงในโรงฝึกงานทุกสาขา</p>
+      </div>
+    </div>
+
+    <div class="program-grid">
+      <div class="program-card">
+        <span class="program-num">01</span>
+        <h3>ช่างยนต์</h3>
+        <p>ซ่อมบำรุงเครื่องยนต์ ระบบส่งกำลัง และเทคโนโลยียานยนต์สมัยใหม่</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">02</span>
+        <h3>ไฟฟ้ากำลัง</h3>
+        <p>ติดตั้งและควบคุมระบบไฟฟ้ากำลังในอาคารและโรงงานอุตสาหกรรม</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">03</span>
+        <h3>อิเล็กทรอนิกส์</h3>
+        <p>ออกแบบวงจรและซ่อมบำรุงอุปกรณ์อิเล็กทรอนิกส์และระบบควบคุม</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">04</span>
+        <h3>ก่อสร้าง</h3>
+        <p>เขียนแบบ ประมาณราคา และควบคุมงานก่อสร้างตามมาตรฐานวิชาชีพ</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">05</span>
+        <h3>เทคนิคการเชื่อมและตรวจสอบรอยเชื่อม</h3>
+        <p>ฝึกเชื่อมโลหะและตรวจสอบคุณภาพงานเชื่อมตามมาตรฐานอุตสาหกรรม (NDT)</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">06</span>
+        <h3>เทคนิคคอมพิวเตอร์</h3>
+        <p>ซ่อมบำรุงระบบคอมพิวเตอร์ เครือข่าย และการเขียนโปรแกรมควบคุม</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="apply">
+  <div class="wrap cta-row">
+    <div>
+      <h2>พร้อมเริ่มต้นเส้นทางสายอาชีพแล้วหรือยัง?</h2>
+      <p>สมัครเรียนออนไลน์ได้แล้ววันนี้ ใช้เวลาไม่ถึง 5 นาที</p>
+    </div>
+    <a href="#" class="btn btn-primary">สมัครเรียน</a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <strong style="color:#fff;font-family:'Kanit',sans-serif;font-size:17px;">วิทยาลัยเทคนิคไทย-ออสเตรีย</strong>
+      <p>ผลิตและพัฒนากำลังคนสายอาชีพ เน้นปฏิบัติจริง ร่วมมือกับสถานประกอบการอุตสาหกรรมชั้นนำ</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="YouTube">YT</a>
+        <a href="#" aria-label="Line">LN</a>
+      </div>
+    </div>
+    <div>
+      <h4>เมนูลัด</h4>
+      <ul>
+        <li><a href="#home">หน้าหลัก</a></li>
+        <li><a href="#news">ข่าวประชาสัมพันธ์</a></li>
+        <li><a href="#programs">หลักสูตร</a></li>
+        <li><a href="#apply">สมัครเรียน</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>สำหรับนักศึกษา</h4>
+      <ul>
+        <li><a href="#">ระบบทะเบียน</a></li>
+        <li><a href="#">e-Learning</a></li>
+        <li><a href="#">ปฏิทินการศึกษา</a></li>
+        <li><a href="#">ทุนการศึกษา</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>ติดต่อเรา</h4>
+      <ul>
+        <li>193 หมู่ 3 ตำบลทับมา<br>อำเภอบ้านฉาง จังหวัดระยอง</li>
+        <li>โทร. 038-238398, 038-238527</li>
+        <li>อีเมล saraban@tatc.ac.th</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2569 วิทยาลัยเทคนิคไทย-ออสเตรีย สงวนลิขสิทธิ์</span>
+    <span>ออกแบบเว็บไซต์ประชาสัมพันธ์วิทยาลัย</span>
+  </div>
+</footer>
+
+<a href="#apply" class="btn btn-primary float-apply">สมัครเรียน</a>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('mainMenu');
+  toggle.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
